@@ -7,27 +7,32 @@ export default {
         AssignmentTags
     },
     template: `
-        <section v-show="assignments.length">
+        <section v-show="assignments.length" class="w-60">
+        <div class="flex justify-between items-start">
             <h2 class="font-bold mb-2">
                 {{title}}
                 <span>{{assignments.length}}</span>
             </h2>
-
-            <assignment-tags :current-tag="currentTag" :initialTags="assignments.map(a => a.tag)" @change="currentTag = $event"></assignment-tags>
+            <button v-show="canToggle" @click="$emit('toggle')">&times;</button>
+        </div>
+            <assignment-tags v-model="currentTag" :initialTags="assignments.map(a => a.tag)"></assignment-tags>
 
             <ul class="border divide-y mt-6">
                <assignment :assignment="assignment" v-for="assignment in filteredAssignments" :key="assignment.id"></assignment>
             </ul>
 
+            <slot></slot>
+
         </section>`,
     props: {
         assignments: Array,
-        title: String
+        title: String,
+        canToggle: {type: Boolean, default: false}
     },
 
     data(){
         return {
-            currentTag: ''
+            currentTag: 'all'
         }
     },
 
