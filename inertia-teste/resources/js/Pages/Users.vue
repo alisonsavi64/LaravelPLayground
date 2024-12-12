@@ -1,6 +1,6 @@
 <template>
-        <h1>Users</h1>
-        <Nav/>
+        <Head title="App - Users"></Head>
+        <h1 class="text-4xl font-bold">Users</h1>
 
         <div style="margin-top: 800px;">
             <p>The current time is {{ time }}.</p>
@@ -9,14 +9,10 @@
 </template>
 
 <script>
-import Nav from '../Shared/Nav.vue';
-import { Link } from '@inertiajs/vue3';
 export default {
-
-    components: { Nav, Link },
     props: {
         time: String
-    }
+    },
 };
 </script>
 

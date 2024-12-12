@@ -1,15 +1,19 @@
 import { createApp, h } from 'vue'
-import { createInertiaApp } from '@inertiajs/vue3'
+import { createInertiaApp, Head, Link } from '@inertiajs/vue3'
+import Layout from './Shared/Layout.vue';
 
 createInertiaApp({
-  resolve: name => {
-    const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
-    return pages[`./Pages/${name}.vue`]
+  resolve: async name => {
+    const page = await import(`./Pages/${name}.vue`);
+    page.default.layout = page.default.layout ?? Layout;
+    return page.default;
   },
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
-      .mount(el)
+      .component('Link', Link)
+      .component('Head', Head)
+      .mount(el);
   },
   progress: {
     delay: 250,

@@ -1,17 +1,7 @@
 <template>
-    <h1 class="text-4xl font-bold">Home</h1>
-    <Nav/>
+    <Head title="App - Home"></Head>
+        <h1 class="text-4xl font-bold">Home</h1>
 </template>
-
-<script>
-import Nav from '../Shared/Nav.vue';
-
-export default {
-    components: {
-        Nav
-    }
-};
-</script>
 
 <style>
 h1 {

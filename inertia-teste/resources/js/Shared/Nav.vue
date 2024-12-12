@@ -1,6 +1,6 @@
 <template>
-    <nav class="mt-6">
-        <ul class="list-disc">
+    <nav>
+        <ul class="flex space-x-6">
             <li>
                 <NavLink href="/"  :active="$page.url === '/'">Home</NavLink>
             </li>
